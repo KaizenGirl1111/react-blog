@@ -1,0 +1,7 @@
+1. installation->required->middleware
+ /*backend route*/
+2. signin->token->res.cookie(key,value,attributes passed in object form)
+ /*frontend POST call*/
+3. Sign in , credentials , include
+4. cors , in detail , origin , credentials 
+
