@@ -16,6 +16,8 @@ function SignUp() {
 
   const [formType, setFormType] = useState({ email: "", phone: "" });
   const navigate = useNavigate()
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   const handleChange = (e) => {
     const { name, value } = e.target; //1st method
     // if(name==="username")setUsername(value)
@@ -40,7 +42,7 @@ function SignUp() {
 
   const signUpUser = async (formData) => {
     try{
-    let res = await fetch("http://localhost:8002/signup", {
+    let res = await fetch(`${BACKEND_URL}/signup`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(formData),

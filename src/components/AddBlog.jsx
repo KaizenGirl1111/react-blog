@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import LogoutBtn from "./LogoutBtn";
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../assets/dropdown-menu"
+import Form from 'react-bootstrap/Form';
+
+
 
 function AddBlog() {
   const navigate = useNavigate()
  // const token = sessionStorage.getItem("token")
  // const token = localStorage.getItem("token")
+ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -31,7 +31,7 @@ function AddBlog() {
   };
   const createBlog = async (formData) => {
     try{
-    const res = await fetch("http://localhost:8002/blog", {
+    const res = await fetch(`${BACKEND_URL}/blog`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -57,31 +57,33 @@ function AddBlog() {
        <div className="all-blogs-bg vh-100 w-100 d-flex flex-column justify-content-center align-items-center gap-2 text-white">
       <LogoutBtn/>
       <h1>Add blog</h1>
-      <form onSubmit={handleSubmit} className="">
-        <div className="d-flex gap-4 mb-1">
-        <label for="title">Title: </label>
-        <input type="text" placeholder="Enter title" name="title" id="title" />
-        </div>
-         <div className="d-flex gap-2 mb-1">
-        <label for="author">Author: </label>
-        <input
+      <Form onSubmit={handleSubmit} className="">
+        <Form.Group className="d-flex gap-6 mb-1">
+        <Form.Label for="title">Title: </Form.Label>
+        <Form.Control type="text" placeholder="Enter title" name="title" id="title" />
+        </Form.Group>
+         <Form.Group className="d-flex gap-2 mb-1">
+        <Form.Label for="author">Author: </Form.Label>
+        <Form.Control
           type="text"
           placeholder="Enter author"
           name="author"
           id="author"
         />
-        </div>
-        <label for="content">Content: </label>
+        </Form.Group>
+        <Form.Group>
+        <Form.Label for="content">Content: </Form.Label>
         <textarea
           type="text"
           placeholder="Enter content"
           name="content"
           id="content"
         />
-        <br />
-        <br />
-        <input type="radio" name="status" id="pending" value="Pending" />
+        </Form.Group>
+         <Form.Group>
+        <Form.Control type="radio" name="status" id="pending" value="Pending" />
         <label htmlFor="pending">Pending</label>
+        </Form.Group>.
         <input
           type="radio"
           name="status"
@@ -119,7 +121,7 @@ function AddBlog() {
      <br/>
      <br/>
       <input type="submit" value="submit" className="btn btn-light" />
-      </form>
+      </Form>
     </div>
   );
 }

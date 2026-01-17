@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Form from 'react-bootstrap/Form';
 
 function AddBlog(){
     const [formData,setFormData] = useState({
@@ -42,15 +43,16 @@ function AddBlog(){
 return (
     <div style={{display:"flex", flexDirection:"column"}}>
     <h1>Add blog</h1>
-    <form onSubmit={handleSubmit}>
-     <label for="title">Title: </label>
-     <input type="text" placeholder="Enter title" name="title" id="title" value={formData.title} onChange={handleChange}/>
-     <br/>
-     <br/>
-     <label for="author">Author: </label>
-     <input type="text" placeholder="Enter author" name="author" id="author" value={formData.author} onChange={handleChange}/>
-     <br/>
-     <br/>
+    <Form onSubmit={handleSubmit}>
+    <Form.Group>
+      <Form.Label for="title">Title: </Form.Label>
+      <Form.Control type="text" placeholder="Enter title" name="title" id="title" value={formData.title} onChange={handleChange}/>
+     </Form.Group>
+    <Form.Group>
+     <Form.Label for="author">Author: </Form.Label>
+     <Form.Control type="text" placeholder="Enter author" name="author" id="author" value={formData.author} onChange={handleChange}/>
+     </Form.Group>
+    
      <label for="content">Content: </label>
      <textarea type="text" placeholder="Enter content" name="content" id="content" value={formData.content} onChange={handleChange}/>
      <br/>
@@ -65,7 +67,7 @@ return (
      <br/>
      <br/>
      <input type="submit" value="submit"/>
-    </form>
+    </Form>
     </div>
 )
 }

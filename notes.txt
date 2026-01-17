@@ -5,3 +5,5 @@
 3. Sign in , credentials , include
 4. cors , in detail , origin , credentials 
 
+# const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; in vite project
+# const BACKEND_URL = process.env.REACT_APP_BACKEND_URL; in npx create app

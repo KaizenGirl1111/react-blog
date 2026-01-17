@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
 function SignIn() {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginWith, setLoginWith] = useState({ phone: false, email: false });
@@ -22,7 +23,7 @@ function SignIn() {
 
   const signInUser = async (formData) => {
     try{
-    let res = await fetch("http://localhost:8002/signin", {
+    let res = await fetch(`${BACKEND_URL}/signin`, {
       method: "POST",
       credentials:"include",
       headers: { "Content-Type": "application/json" },
@@ -60,7 +61,7 @@ catch(error){
       </div>
       <form onSubmit={handleSubmit} className="text-white">
         {loginWith.email && (
-          <>
+          <div className="d-flex gap-3">
             <input
               type="email"
               name="email"
@@ -78,11 +79,11 @@ catch(error){
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input type="submit" name="submit" />
-          </>
+            <input type="submit" name="submit" className="btn btn-primary"/>
+          </div>
         )}
         {loginWith.phone && (
-          <>
+          <div className="d-flex gap-3">
             <input type="number" name="phone" id="phone" placeholder="Enter phone" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
             <input
               type="password"
@@ -92,8 +93,8 @@ catch(error){
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input type="submit" name="submit" />
-          </>
+            <input type="submit" name="submit" className="btn btn-primary" />
+          </div>
         )}
       </form>
       </div>
