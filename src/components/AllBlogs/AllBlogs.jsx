@@ -4,6 +4,8 @@ import LogoutBtn from "../LogoutBtn";
 import BlogFilters from "./BlogFilters";
 import BlogTable from "./BlogTable";
 import Pagination from "./Pagination";
+import Button from 'react-bootstrap/Button';
+
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -55,7 +57,6 @@ function AllBlogs() {
       // }
 
       const url = `${BACKEND_URL}/blog?${params.toString()}`;
-      console.log("url",url)
 
       const res = await fetch(url, { credentials: "include" });
 
@@ -81,16 +82,16 @@ function AllBlogs() {
   }, [category, status, limit, page, sortBy, order]);
 
   return (
-    <div className="all-blogs-bg vh-100 w-100 d-flex flex-column justify-content-center align-items-center gap-2">
-      <h1 className="text-white">All Blogs</h1>
+    <div className="all-blogs-bg vh-100 w-100 d-flex flex-column gap-2">
       <div className="d-flex gap-2">
+      <h1 className="text-white">All Blogs</h1>
         <LogoutBtn />
-        <button onClick={() => navigate("/add-blog")} className="btn btn-light">
+        <Button variant="light" size="sm" onClick={() => navigate("/add-blog")}>
           Add Blog
-        </button>
+        </Button>
       </div>
 
-     
+      <div className="justify-content-center align-items-center">
         <BlogFilters
           category={category}
           status={status}
@@ -105,6 +106,7 @@ function AllBlogs() {
         />
         <BlogTable allBlogs={allBlogs} page={page} limit={limit} />
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+        </div>
     </div>
   );
 }

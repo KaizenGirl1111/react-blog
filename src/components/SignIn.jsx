@@ -31,11 +31,11 @@ function SignIn() {
     });
     let newData = await res.json();
     console.log("newData",newData);
-    if(newData.token){
-      sessionStorage.setItem("token",newData.token)
-      localStorage.setItem("token",newData.token)
-      localStorage.setItem("cat","tom")
-    }
+   // if(newData.token){
+     // sessionStorage.setItem("token",newData.token)
+    //  localStorage.setItem("token",newData.token)
+    //  localStorage.setItem("cat","tom")
+   // }
     if(typeof newData==="object") navigate('/all-blogs')
 }
 catch(error){

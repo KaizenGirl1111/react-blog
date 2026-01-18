@@ -5,10 +5,12 @@ const ProtectedRouteCookie = ({ children }) => {
   //const navigate = useNavigate()
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(true);
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   const verifyToken = async () => {
     console.log("check verifyToken");
     try {
-      let res = await fetch("http://localhost:8002/verify", {
+      let res = await fetch(`${BACKEND_URL}/verify`, {
         credentials: "include",
       });
       let newData = await res.json();

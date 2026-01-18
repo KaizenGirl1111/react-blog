@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
 
 function LogoutBtn(){
     const navigate = useNavigate()
@@ -15,12 +16,12 @@ function LogoutBtn(){
     }
 
     return(<>
-     <button onClick={()=>{
+     <Button onClick={()=>{
       //  sessionStorage.clear()
       //  localStorage.clear()
         signOut()
         navigate('/')
-    }} className="btn btn-light">Log out</button>
+    }} variant="light" size="sm">Log out</Button>
     </>)
 }
 
